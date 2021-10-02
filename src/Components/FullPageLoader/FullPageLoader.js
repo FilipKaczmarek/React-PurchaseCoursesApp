@@ -16,7 +16,9 @@ export const FullPageLoader = (props) => {
             className={`${styles.root}${className ? ` ${className}` : ''}`}
             {...otherProps}
             >
-            <Spinner />
+            <Spinner
+            className={styles.spinner}
+            />
         </div>
     )
 }
