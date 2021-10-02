@@ -1,6 +1,7 @@
 import React from 'react'
 
 import FullPageLoader from './Components/FullPageLoader'
+import Typography from './Typography'
 
 export class App extends React.Component {
   state = {
@@ -38,10 +39,29 @@ export class App extends React.Component {
   }
 
   render() {
+    const { isLoading } = this.state
+
     return (
       <div className="App">
         <h1>TEXT</h1>
-        <FullPageLoader />
+        {
+          isLoading ?
+            <FullPageLoader />
+            :
+            null
+        }
+        <Typography
+          variant={'h1'}>
+        Header 1
+        </Typography>
+        <Typography
+          variant={'h3'}>
+        Header 3
+        </Typography>
+        <Typography
+          variant={'button'}>
+        Button
+        </Typography>
       </div>
     );
   }
