@@ -41,7 +41,7 @@ export class App extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.state
+    const { isLoading, infoMessage, isInfoDisplayed, hasError, errorMessage } = this.state
 
     return (
       <div className="App">
@@ -79,9 +79,26 @@ export class App extends React.Component {
         <Button variant={'text'} color={'primary'}>
           TEXT PRIMARY
         </Button>
-        <FullPageMessage 
-          message={'INFO'}
-        />
+        {
+          isInfoDisplayed ?
+            <FullPageMessage
+              message={infoMessage}
+              infoVariant={'info'}
+              onButtonClick={console.log}
+            />
+            :
+            null
+        }
+        {
+          hasError ?
+            <FullPageMessage
+              message={errorMessage}
+              iconVariant={'error'}
+              onButtonClick={console.log}
+            />
+            :
+            null
+        }
       </div>
     );
   }
