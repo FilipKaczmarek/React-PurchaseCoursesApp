@@ -6,10 +6,14 @@ import Typography from '../Typography'
 
 import styles from './styles.module.css'
 
+import ErrorIcon from './ErrorIcon'
+import InfoIcon from './InfoIcon'
+
 export const FullPageMessage = (props) => {
     const {
         className,
         message,
+        iconVariant = 'info',
         buttonLabel = 'GO BACK',
         ...otherProps
     } = props
@@ -20,9 +24,10 @@ export const FullPageMessage = (props) => {
             {...otherProps}
         >
             <div className={styles.wrapper}>
+                {iconVariant === 'info' ? <InfoIcon /> : <ErrorIcon />}
                 <Typography
-                variant={'h3'}
-                className={styles.message}
+                    variant={'h3'}
+                    className={styles.message}
                 >
                     {message}
                 </Typography>
@@ -41,6 +46,7 @@ FullPageMessage.propTypes = {
     className: PropTypes.string,
     message: PropTypes.string.isRequired,
     buttonLabel: PropTypes.string,
+    iconVariant: PropTypes.oneOf(['error', 'info'])
 }
 
 export default FullPageMessage
