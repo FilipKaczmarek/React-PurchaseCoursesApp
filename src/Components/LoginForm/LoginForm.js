@@ -12,6 +12,13 @@ import styles from './styles.module.css'
 export const LoginForm = (props) => {
   const {
     className,
+    onClickLogin,
+    onClickCreateAccount,
+    onClickForgotPassword,
+    onChangeMail,
+    onChangePassword,
+    email,
+    password,
     ...otherProps
   } = props
 
@@ -20,22 +27,43 @@ export const LoginForm = (props) => {
       className={`${styles.root}${className ? ` ${className}` : ''}`}
       {...otherProps}
     >
-      <Logo className={styles.logo}/>
+      <Logo className={styles.logo} />
       <Typography
         variant={'h1'}
         className={styles.header}
       >
         Log in 👋
       </Typography>
-      <TextField className={styles.textField} placeholder={'E-mail'} />
-      <TextField className={styles.textField} placeholder={'Password'} />
-      <Button className={styles.button} variant={'contained'} color={'primary'}>
+      <TextField
+        className={styles.textField}
+        placeholder={'E-mail'}
+        value={email}
+        onChange={onChangeMail}
+      />
+      <TextField
+        className={styles.textField}
+        type={'password'}
+        placeholder={'Password'}
+        value={password}
+        onChange={onChangePassword} />
+      <Button
+        className={styles.button}
+        variant={'contained'}
+        color={'primary'}
+        onClick={onClickLogin}>
         LOGIN
       </Button>
-      <Button className={styles.button} variant={'contained'} color={'secondary'}>
+      <Button
+        className={styles.button}
+        variant={'contained'}
+        color={'secondary'}
+        onClick={onClickCreateAccount}>
         CREATE ACCOUNT
       </Button>
-      <Button className={styles.button} variant={'text'}>
+      <Button
+        className={styles.button}
+        variant={'text'}
+        onClick={onClickForgotPassword}>
         FORGOT PASSWORD
       </Button>
     </div>
@@ -43,7 +71,14 @@ export const LoginForm = (props) => {
 }
 
 LoginForm.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  onClickLogin: PropTypes.func.isRequired,
+  onClickCreateAccount: PropTypes.func.isRequired,
+  onClickForgotPassword: PropTypes.func.isRequired,
+  onChangeMail: PropTypes.func.isRequired,
+  onChangePassword: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired
 }
 
 export default LoginForm

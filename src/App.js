@@ -2,9 +2,6 @@ import React from 'react'
 
 import FullPageLoader from './Components/FullPageLoader'
 import FullPageMessage from './Components/FullPageMessage'
-import Typography from './Components/Typography'
-import Button from './Components/Button'
-import TextField from './Components/TextField/TextField'
 import LoginForm from './Components/LoginForm/LoginForm'
 import FullPageLayout from './Components/FullPageLayout'
 
@@ -44,14 +41,22 @@ export class App extends React.Component {
   }
 
   render() {
-    const { isLoading, infoMessage, isInfoDisplayed, hasError, errorMessage, notLoginUserRoute } = this.state
+    const { isLoading, infoMessage, isInfoDisplayed, hasError, errorMessage, notLoginUserRoute, loginEmail, loginPassword } = this.state
 
     return (
       <div className="App">
         {
           notLoginUserRoute === 'LOGIN' ?
             <FullPageLayout>
-              <LoginForm />
+              <LoginForm 
+                onClickLogin={() => console.log('onClickLogin')}
+                onClickCreateAccount={() => console.log('onClickCreateAccount')}
+                onClickForgotPassword={() => console.log('onClickForgotPassword')}
+                onChangeMail={(e) => this.setState(() => ({ loginEmail: e.target.value }))}
+                onChangePassword={(e) => this.setState(() => ({ loginPassword: e.target.value }))}
+                email={loginEmail}
+                password={loginPassword}
+              />
             </FullPageLayout>
             :
             null
