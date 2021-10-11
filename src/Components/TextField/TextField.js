@@ -10,12 +10,10 @@ export const TextField = (props) => {
   } = props
 
   return (
-    <div
+    <input
       className={`${styles.root}${className ? ` ${className}` : ''}`}
       {...otherProps}
-    >
-
-    </div>
+    />
   )
 }
 

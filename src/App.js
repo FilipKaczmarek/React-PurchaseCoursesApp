@@ -4,6 +4,7 @@ import FullPageLoader from './Components/FullPageLoader'
 import FullPageMessage from './Components/FullPageMessage'
 import Typography from './Components/Typography'
 import Button from './Components/Button'
+import TextField from './Components/TextField/TextField'
 
 export class App extends React.Component {
   state = {
@@ -99,6 +100,9 @@ export class App extends React.Component {
             :
             null
         }
+        <TextField
+          placeholder={'E-mail'}
+        />
       </div>
     );
   }
