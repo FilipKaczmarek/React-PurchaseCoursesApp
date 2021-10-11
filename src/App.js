@@ -5,6 +5,7 @@ import FullPageMessage from './Components/FullPageMessage'
 import Typography from './Components/Typography'
 import Button from './Components/Button'
 import TextField from './Components/TextField/TextField'
+import LoginForm from './Components/LoginForm/LoginForm'
 
 export class App extends React.Component {
   state = {
@@ -22,7 +23,7 @@ export class App extends React.Component {
     userAvatar: '',
 
     // router state
-    notLoginUserRoute: 'LOGIN', // 'NEW-ACCOUNT' or 'FORGOT PASSWORD'
+    notLoginUserRoute: 'LOGIN', // 'NEW-ACCOUNT' or 'FORGOT-PASSWORD'
 
     // login page state
     loginEmail: '',
@@ -42,44 +43,22 @@ export class App extends React.Component {
   }
 
   render() {
-    const { isLoading, infoMessage, isInfoDisplayed, hasError, errorMessage } = this.state
+    const { isLoading, infoMessage, isInfoDisplayed, hasError, errorMessage, notLoginUserRoute } = this.state
 
     return (
       <div className="App">
-        <h1>TEXT</h1>
+        {
+          notLoginUserRoute === 'LOGIN' ?
+          <LoginForm />
+          :
+          null
+        }
         {
           isLoading ?
             <FullPageLoader />
             :
             null
         }
-        <Typography
-          variant={'h1'}>
-          Header 1
-        </Typography>
-        <Typography
-          variant={'h3'}>
-          Header 3
-        </Typography>
-        <Typography
-          variant={'button'}>
-          Button
-        </Typography>
-        <br />
-        <br />
-        <Button variant={'contained'} color={'primary'}>
-          CONTAINED PRIMARY
-        </Button>
-        <br />
-        <br />
-        <Button variant={'contained'} color={'secondary'}>
-          CONTAINED SECONDARY
-        </Button>
-        <br />
-        <br />
-        <Button variant={'text'} color={'primary'}>
-          TEXT PRIMARY
-        </Button>
         {
           isInfoDisplayed ?
             <FullPageMessage
@@ -100,9 +79,6 @@ export class App extends React.Component {
             :
             null
         }
-        <TextField
-          placeholder={'E-mail'}
-        />
       </div>
     );
   }
