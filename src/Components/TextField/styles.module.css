@@ -13,6 +13,7 @@
   letter-spacing: 0.15000000596046448px;
   text-align: left;
   outline: none;
+  box-sizing: border-box;
 
   color: rgba(0, 0, 0, 0.6);
 }

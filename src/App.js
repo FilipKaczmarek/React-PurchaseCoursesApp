@@ -6,6 +6,7 @@ import Typography from './Components/Typography'
 import Button from './Components/Button'
 import TextField from './Components/TextField/TextField'
 import LoginForm from './Components/LoginForm/LoginForm'
+import FullPageLayout from './Components/FullPageLayout'
 
 export class App extends React.Component {
   state = {
@@ -49,9 +50,11 @@ export class App extends React.Component {
       <div className="App">
         {
           notLoginUserRoute === 'LOGIN' ?
-          <LoginForm />
-          :
-          null
+            <FullPageLayout>
+              <LoginForm />
+            </FullPageLayout>
+            :
+            null
         }
         {
           isLoading ?
