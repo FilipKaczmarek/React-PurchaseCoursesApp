@@ -1,1 +1,25 @@
-.root {}
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+.textField {
+  margin-bottom: 10px;
+  width: 220px;
+}
+
+.button {
+  margin-bottom: 10px;
+  width: 220px;
+}
+
+.header {
+  margin-bottom: 30px;
+  color: rgba(0, 0, 0, 0.6);
+}
