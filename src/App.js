@@ -77,9 +77,9 @@ export class App extends React.Component {
                   email={createAccountEmail}
                   password={createAccountPassword}
                   repeatPassword={createAccountRepeatPassword}
-                  onChangeEmail={() => console.log('onChangeEmail')}
-                  onChangePassword={() => console.log('onChangePassword')}
-                  onChangeRepeatPassword={() => console.log('onChangeRepeatPassword')}
+                  onChangeEmail={(e) => this.setState(() => ({ createAccountEmail: e.target.value }))}
+                  onChangePassword={(e) => this.setState(() => ({ createAccountPassword: e.target.value }))}
+                  onChangeRepeatPassword={(e) => this.setState(() => ({ repeatPassword: e.target.value }))}
                   createAccount={() => console.log('createAccount')}
                   backToLogin={() => console.log('backToLogin')}
                 />
