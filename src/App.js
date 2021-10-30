@@ -4,7 +4,8 @@ import FullPageLoader from './Components/FullPageLoader'
 import FullPageMessage from './Components/FullPageMessage'
 import LoginForm from './Components/LoginForm/LoginForm'
 import FullPageLayout from './Components/FullPageLayout'
-import CreateAccountForm from './Components/CreateAccountForm/CreateAccountForm'
+import CreateAccountForm from './Components/CreateAccountForm'
+import RecoverPasswordForm from './Components/RecoverPasswordForm'
 
 export class App extends React.Component {
   state = {
@@ -22,7 +23,7 @@ export class App extends React.Component {
     userAvatar: '',
 
     // router state
-    notLoginUserRoute: 'LOGIN', // 'CREATE-ACCOUNT' or 'FORGOT-PASSWORD'
+    notLoginUserRoute: 'LOGIN', // 'CREATE-ACCOUNT' or 'RECOVER-PASSWORD'
 
     // login page state
     loginEmail: '',
@@ -42,18 +43,19 @@ export class App extends React.Component {
   }
 
   render() {
-    const { 
-      isLoading, 
-      infoMessage, 
-      isInfoDisplayed, 
-      hasError, 
-      errorMessage, 
-      notLoginUserRoute, 
-      loginEmail, 
+    const {
+      isLoading,
+      infoMessage,
+      isInfoDisplayed,
+      hasError,
+      errorMessage,
+      notLoginUserRoute,
+      loginEmail,
       loginPassword,
       createAccountEmail,
       createAccountPassword,
-      createAccountRepeatPassword } = this.state
+      createAccountRepeatPassword,
+      recoverPasswordEmail } = this.state
 
     return (
       <div className="App">
@@ -80,12 +82,22 @@ export class App extends React.Component {
                   onChangeEmail={(e) => this.setState(() => ({ createAccountEmail: e.target.value }))}
                   onChangePassword={(e) => this.setState(() => ({ createAccountPassword: e.target.value }))}
                   onChangeRepeatPassword={(e) => this.setState(() => ({ repeatPassword: e.target.value }))}
-                  createAccount={() => console.log('createAccount')}
-                  backToLogin={() => console.log('backToLogin')}
+                  onClickCreateAccount={() => console.log('createAccount')}
+                  onClickBackToLogin={() => console.log('backToLogin')}
                 />
               </FullPageLayout>
               :
-              null
+              notLoginUserRoute === 'RECOVER-PASSWORD' ?
+                <FullPageLayout>
+                  <RecoverPasswordForm
+                    email={recoverPasswordEmail}
+                    onChangeEmail={() => this.setState((e) => ({ recoverPasswordEmail: e.target.value }))}
+                    onClickRecover={() => console.log('onClickRecover')}
+                    onClickBackToLogin={() => console.log('onClickRecover')}
+                  />
+                </FullPageLayout>
+                :
+                null
         }
         {
           isLoading ?
