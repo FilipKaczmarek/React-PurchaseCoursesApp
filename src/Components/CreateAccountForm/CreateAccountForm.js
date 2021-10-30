@@ -17,8 +17,8 @@ export const CreateAccountForm = (props) => {
     onChangeEmail,
     onChangePassword,
     onChangeRepeatPassword,
-    createAccount,
-    backToLogin,
+    onClickCreateAccount,
+    onClickBackToLogin,
     ...otherProps
   } = props
 
@@ -59,14 +59,14 @@ export const CreateAccountForm = (props) => {
       <Button
         variant={'contained'}
         color={'primary'}
-        onClick={createAccount}
+        onClick={onClickCreateAccount}
         className={styles.button}
       >
         CREATE ACCOUNT
       </Button>
       <Button
         variant={'text'}
-        onClick={backToLogin}
+        onClick={onClickBackToLogin}
         className={styles.button}
       >
         BACK TO LOGIN
@@ -83,8 +83,8 @@ CreateAccountForm.propTypes = {
   onChangeEmail: PropTypes.func.isRequired,
   onChangePassword: PropTypes.func.isRequired,
   onChangeRepeatPassword: PropTypes.func.isRequired,
-  createAccount: PropTypes.func.isRequired,
-  backToLogin: PropTypes.func.isRequired,
+  onClickCreateAccount: PropTypes.func.isRequired,
+  onClickBackToLogin: PropTypes.func.isRequired,
 }
 
 export default CreateAccountForm

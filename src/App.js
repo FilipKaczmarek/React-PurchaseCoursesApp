@@ -64,8 +64,8 @@ export class App extends React.Component {
             <FullPageLayout>
               <LoginForm
                 onClickLogin={() => console.log('onClickLogin')}
-                onClickCreateAccount={() => console.log('onClickCreateAccount')}
-                onClickForgotPassword={() => console.log('onClickForgotPassword')}
+                onClickCreateAccount={() => this.setState(() => ({ notLoginUserRoute: 'CREATE-ACCOUNT' }))}
+                onClickForgotPassword={() => this.setState(() => ({ notLoginUserRoute: 'RECOVER-PASSWORD' }))}
                 onChangeMail={(e) => this.setState(() => ({ loginEmail: e.target.value }))}
                 onChangePassword={(e) => this.setState(() => ({ loginPassword: e.target.value }))}
                 email={loginEmail}
@@ -82,8 +82,8 @@ export class App extends React.Component {
                   onChangeEmail={(e) => this.setState(() => ({ createAccountEmail: e.target.value }))}
                   onChangePassword={(e) => this.setState(() => ({ createAccountPassword: e.target.value }))}
                   onChangeRepeatPassword={(e) => this.setState(() => ({ repeatPassword: e.target.value }))}
-                  onClickCreateAccount={() => console.log('createAccount')}
-                  onClickBackToLogin={() => console.log('backToLogin')}
+                  onClickCreateAccount={() => this.setState(() => ({ notLoginUserRoute: 'CREATE-ACCOUNT' }))}
+                  onClickBackToLogin={() => this.setState(() => ({ notLoginUserRoute: 'LOGIN' }))}
                 />
               </FullPageLayout>
               :
@@ -93,7 +93,7 @@ export class App extends React.Component {
                     email={recoverPasswordEmail}
                     onChangeEmail={() => this.setState((e) => ({ recoverPasswordEmail: e.target.value }))}
                     onClickRecover={() => console.log('onClickRecover')}
-                    onClickBackToLogin={() => console.log('onClickRecover')}
+                    onClickBackToLogin={() => this.setState(() => ({ notLoginUserRoute: 'LOGIN' }))}
                   />
                 </FullPageLayout>
                 :
