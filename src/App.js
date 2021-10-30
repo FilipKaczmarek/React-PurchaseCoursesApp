@@ -4,6 +4,7 @@ import FullPageLoader from './Components/FullPageLoader'
 import FullPageMessage from './Components/FullPageMessage'
 import LoginForm from './Components/LoginForm/LoginForm'
 import FullPageLayout from './Components/FullPageLayout'
+import CreateAccountForm from './Components/CreateAccountForm/CreateAccountForm'
 
 export class App extends React.Component {
   state = {
@@ -21,7 +22,7 @@ export class App extends React.Component {
     userAvatar: '',
 
     // router state
-    notLoginUserRoute: 'LOGIN', // 'NEW-ACCOUNT' or 'FORGOT-PASSWORD'
+    notLoginUserRoute: 'LOGIN', // 'CREATE-ACCOUNT' or 'FORGOT-PASSWORD'
 
     // login page state
     loginEmail: '',
@@ -41,14 +42,25 @@ export class App extends React.Component {
   }
 
   render() {
-    const { isLoading, infoMessage, isInfoDisplayed, hasError, errorMessage, notLoginUserRoute, loginEmail, loginPassword } = this.state
+    const { 
+      isLoading, 
+      infoMessage, 
+      isInfoDisplayed, 
+      hasError, 
+      errorMessage, 
+      notLoginUserRoute, 
+      loginEmail, 
+      loginPassword,
+      createAccountEmail,
+      createAccountPassword,
+      createAccountRepeatPassword } = this.state
 
     return (
       <div className="App">
         {
           notLoginUserRoute === 'LOGIN' ?
             <FullPageLayout>
-              <LoginForm 
+              <LoginForm
                 onClickLogin={() => console.log('onClickLogin')}
                 onClickCreateAccount={() => console.log('onClickCreateAccount')}
                 onClickForgotPassword={() => console.log('onClickForgotPassword')}
@@ -59,7 +71,21 @@ export class App extends React.Component {
               />
             </FullPageLayout>
             :
-            null
+            notLoginUserRoute === 'CREATE-ACCOUNT' ?
+              <FullPageLayout>
+                <CreateAccountForm
+                  email={createAccountEmail}
+                  password={createAccountPassword}
+                  repeatPassword={createAccountRepeatPassword}
+                  onChangeEmail={() => console.log('onChangeEmail')}
+                  onChangePassword={() => console.log('onChangePassword')}
+                  onChangeRepeatPassword={() => console.log('onChangeRepeatPassword')}
+                  createAccount={() => console.log('createAccount')}
+                  backToLogin={() => console.log('backToLogin')}
+                />
+              </FullPageLayout>
+              :
+              null
         }
         {
           isLoading ?
