@@ -12,6 +12,9 @@ export const CreateAccountForm = (props) => {
   const {
     className,
     email,
+    emailError,
+    passwordError,
+    repeatPasswordError,
     password,
     repeatPassword,
     onChangeEmail,
@@ -40,11 +43,13 @@ export const CreateAccountForm = (props) => {
         value={email}
         placeholder={'E-mail'}
         className={styles.textField}
+        errorMessage={emailError}
         onChange={onChangeEmail}
       />
       <TextField
         value={password}
         className={styles.textField}
+        errorMessage={passwordError}
         placeholder={'Password'}
         type={'password'}
         onChange={onChangePassword}
@@ -54,6 +59,7 @@ export const CreateAccountForm = (props) => {
         placeholder={'Repeat Password'}
         type={'password'}
         className={styles.textField}
+        errorMessage={repeatPasswordError}
         onChange={onChangeRepeatPassword}
       />
       <Button
@@ -78,6 +84,9 @@ export const CreateAccountForm = (props) => {
 CreateAccountForm.propTypes = {
   className: PropTypes.string,
   email: PropTypes.string.isRequired,
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
+  repeatPasswordError: PropTypes.string,
   password: PropTypes.string.isRequired,
   repeatPassword: PropTypes.string.isRequired,
   onChangeEmail: PropTypes.func.isRequired,
