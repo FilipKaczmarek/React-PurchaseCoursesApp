@@ -33,6 +33,7 @@ export class App extends React.Component {
     loginEmail: '',
     loginEmailError: '',
     loginPassword: '',
+    loginPasswordError: '',
     loginSubmitted: false,
 
     // create account page state
@@ -50,7 +51,10 @@ export class App extends React.Component {
 
   onClickLogin = async () => {
     this.setState(() => ({ loginSubmitted: true }))
+
     if (this.state.loginEmailError) return
+    if (this.state.loginPasswordError) return
+
     this.setState(() => ({ isLoading: true }))
     try {
       await signIn(this.state.loginEmail, this.state.loginPassword)
@@ -80,6 +84,7 @@ export class App extends React.Component {
       loginEmailError,
       loginSubmitted,
       loginPassword,
+      loginPasswordError,
       createAccountEmail,
       createAccountPassword,
       createAccountRepeatPassword,
@@ -100,10 +105,16 @@ export class App extends React.Component {
                     loginEmailError: isEmail(e.target.value) ? '' : 'Please type a valid e-mail'
                   }))
                 }}
-                onChangePassword={(e) => this.setState(() => ({ loginPassword: e.target.value }))}
+                onChangePassword={(e) => {
+                  this.setState(() => ({
+                    loginPassword: e.target.value,
+                    loginPasswordError: e.target.value.length >= 6 ? '' : 'Password must have at least 6 chars!'
+                  }))
+                }}
                 email={loginEmail}
                 emailError={loginSubmitted ? loginEmailError : undefined}
                 password={loginPassword}
+                passwordError={loginSubmitted ? loginPasswordError : undefined}
               />
             </FullPageLayout>
             :
