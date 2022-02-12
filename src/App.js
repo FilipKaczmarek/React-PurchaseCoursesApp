@@ -1,5 +1,7 @@
 import React from 'react'
 
+import isEmail from 'validator/lib/isEmail';
+
 import FullPageLoader from './Components/FullPageLoader'
 import FullPageMessage from './Components/FullPageMessage'
 import LoginForm from './Components/LoginForm/LoginForm'
@@ -29,6 +31,7 @@ export class App extends React.Component {
 
     // login page state
     loginEmail: '',
+    loginEmailError: '',
     loginPassword: '',
 
     // create account page state
@@ -46,8 +49,8 @@ export class App extends React.Component {
 
   onClickLogin = async () => {
     this.setState(() => ({ isLoading: true }))
-    try{
-      await signIn(this.state.loginEmail , this.state.loginPassword)
+    try {
+      await signIn(this.state.loginEmail, this.state.loginPassword)
     } catch (error) {
       this.setState(() => ({ hasError: true, errorMessage: JSON.stringify(error.data.error.message) }))
     } finally {
@@ -71,6 +74,7 @@ export class App extends React.Component {
       errorMessage,
       notLoginUserRoute,
       loginEmail,
+      loginEmailError,
       loginPassword,
       createAccountEmail,
       createAccountPassword,
@@ -86,9 +90,15 @@ export class App extends React.Component {
                 onClickLogin={this.onClickLogin}
                 onClickCreateAccount={() => this.setState(() => ({ notLoginUserRoute: 'CREATE-ACCOUNT' }))}
                 onClickForgotPassword={() => this.setState(() => ({ notLoginUserRoute: 'RECOVER-PASSWORD' }))}
-                onChangeMail={(e) => this.setState(() => ({ loginEmail: e.target.value }))}
+                onChangeMail={(e) => {
+                  this.setState(() => ({
+                    loginEmail: e.target.value,
+                    loginEmailError: isEmail(e.target.value) ? '' : 'Please type a valid e-mail'
+                  }))
+                }}
                 onChangePassword={(e) => this.setState(() => ({ loginPassword: e.target.value }))}
                 email={loginEmail}
+                emailError={loginEmailError}
                 password={loginPassword}
               />
             </FullPageLayout>
