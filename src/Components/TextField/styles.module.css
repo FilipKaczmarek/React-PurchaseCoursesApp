@@ -1,4 +1,10 @@
 .root {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.23);
   height: 40px;
 
@@ -16,4 +22,13 @@
   box-sizing: border-box;
 
   color: rgba(0, 0, 0, 0.6);
+}
+
+.input.hasError{
+  border: 1px solid red;
+}
+
+.errorMessage {
+  width: 100%;
+  color: red;
 }
