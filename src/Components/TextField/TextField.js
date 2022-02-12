@@ -11,15 +11,18 @@ export const TextField = (props) => {
   } = props
 
   return (
-    <div className={styles.root}>
+    <div className={`${styles.root}${className ? ` ${className}` : ''}`}>
       <input
-        className={`${styles.input}${className ? ` ${className}` : ''}${errorMessage ? ` ${styles.hasError}` : ''
+        className={`${styles.input}${errorMessage ? ` ${styles.hasError}` : ''
           }`}
         {...otherProps}
       />
-      <div className={styles.errorMessage}>
-        {errorMessage}
-      </div>
+      {errorMessage ?
+        <div className={styles.errorMessage}>
+          {errorMessage}
+        </div>
+        :
+        null}
     </div>
   )
 }
